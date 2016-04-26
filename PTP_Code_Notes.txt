@@ -1,0 +1,188 @@
+What are they actually using as input for the predictors? Once we know this, we can get more catalogue data, which we can then use to check against the predictions
+
+We need a dictionary keyed by course id, which has, as its value, a dictionary keyed by academic year (spring/fall), which has, as its value, a dictionary keyed by term, which then has enrollment. Then the linear regression just takes all the enrollments. 
+
+We will pickle the dictionaries so that we can store the dictionaries themselves instead of reconstructing them every time. 
+
+Wew ill store the pickled dictionary by year and then we decide we want to predict, we will have one piece of code that takes all the historical data and zips it all up. 
+
+Create a new repository on GitHub. Try to create a private repo on Harvard.
+
+Encrypt the disk. 
+
+So essentially just write code to turn all the data files into a dictionary, then save the dictionary into a file, then just write code to turn that dictionary into a matrix of past course enrollments, then plug it into a linear regression.
+
+/
+
+	test.py
+
+		* Calls load method() defined in datautils/loader.py
+		* Sets a predictor (via ptp.predictors.[predictor, such as predictor_weatherman])
+		* Makes a call to: ptp.experiment.predict_all_semesters(predictor=my_predictor)
+		* Writes those predictions to a log, as with: ptp.experiment.write_predictions(preds, 'predictions', fileName)
+
+	datautils/
+
+		loader.py
+
+			Defines Loader class
+
+				Method: _load_times
+
+					Read in fname_times: 'course_times_offered.csv'
+
+				Method: _load_catalog
+
+					Read in fname_catalog: 'CourseCatalog_REAL.csv'
+
+				Method: _load_ptp
+
+					Read in fname_ptp: 'ptp_counts.csv'
+
+				Method: _load_students
+
+					Read in fname_students:'students.csv'
+
+				Method: _load_enrollments
+
+					Read in fname_enrollment: 'course_enrollments.csv'
+
+				Method: _load_qdata
+
+					Read in fname_qdata: 'q_data.csv'
+
+				Method: load
+
+					Calls all of the previous methods
+
+		params.py
+
+			Sets parameters that are used in the Loader class
+
+			'CourseCatalog_REAL.csv'
+			'course_enrollments.csv'
+			'q_data.csv'
+			'ptp_counts.csv'
+			'students.csv'
+			'course_times_offered.csv'
+
+		preprocess.py
+
+			Method: make_outfile
+
+				Creates the directory root/year/sem if it doesn't exist, and [over]writes a 
+      new file named fname in it.
+
+      Method: process_qdata
+
+      	Cleans the Q Guide data.
+
+      Method: process_enrollment
+
+      	Cleans the enrollment data.
+
+      Method: process_students
+
+      	Cleans the student information data.
+
+      Method: process_ptp
+
+      	Cleans the PTP numbers data.
+
+      Method: parse_timestr
+
+      	Parses a timestring into a tuple of (day, start time, and end time)
+
+      Method: process_course_times
+
+      	Cleans the course times data.
+      	Calls parse_timestr()
+
+      Method: process_course_catalog
+
+      	1) Splits course catalog by year and term
+        2) Creates master instructor ID and department ID spreadsheets.
+
+      Call all methods defined above.
+
+	ptp/
+
+		course.py
+
+			Defines Meeting class
+
+				Method: get_semesters
+
+				Method: get_years
+
+				Method: get_terms_for_year
+
+				Method: by_year_term
+
+				Method: by_year_term_id
+
+				Method: by_course_id
+
+				Method: before_semester
+
+				Method: before_semester_by_course
+
+				Method: print_all
+
+			Defined Course class
+
+				Method: by_id
+
+				Method: by_department
+
+				Method: all_departments
+
+				Method: print_all
+
+				Method: get_deptnum
+
+				Method: get_level
+
+		errors.py
+
+				sets a global variable" studentsPerTG
+				Defines methods to look at the difference between predictions and actual enrollments
+
+				Method: RMS
+
+				Method: abs_TF_diff
+
+				Method: abs_diff
+
+		experiment.py
+
+			Method: write_predictions
+
+			Method: predict_semesters
+
+			Method: predict_all_semesters
+
+			Method: score_all_predictions
+
+			Method: score_by_semester
+
+		predictors.py
+
+			Defines predictors!
+
+			Method: features
+			Method: enrollments
+			Method: new_course_default
+			Method: predictor_ptp
+			Method: predictor_weatherman
+			Method: predictor_lin_regr
+
+		student.py
+
+			Defined Student class
+
+				Method: get_concentrations
+				Method: by_id
+				Method: by_year_term
+				Method: print_all
+				Method: add_year_term

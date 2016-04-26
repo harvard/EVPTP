@@ -1,0 +1,166 @@
+ci3_jwaldo_ptp/
+
+	studentids.csv (also found in datautils/)
+
+		A CSV file with no header
+
+	predictions_BEFORE_TINKERING.csv
+
+		A CSV file with the following header: [" ", ccn, number, year, term, enrollment, prev_enrollment, ptp, new_course (bool), gened (bool), instructor (id), AY, CCN (same as column 2), course_title (string)]
+
+		What tinkering?
+
+		Is this data a subset of the below?
+
+	pred.csv
+
+		A CSV file with the following header: [" ", ccn, number, year, term, enrollment, prev_enrollment, ptp, log_enrollment, log_ptp, enrollment_change, ptp_change, log_enrollment_change, new_course, gened, instructor, first, last, course_title, department, departmental, number_q, Number_of_Q_Responses, response_rate, Crs_Overall, Crs_Workload, Crs_Difficulty, Instructors_Overall, Number_of_Q_Responses_Prev, response_rate_prev, Crs_Overall_Prev, Crs_Workload_Prev, Crs_Difficulty_Prev, Instructors_Overall_Prev, year_prev, term_prev, terms_since_prev, instructor_prev, first_prev, new_instructor, last_prev, ptp_prev, number_gened, AIU, CB, EMR, ER, PAST, SLS, SPU, SW, USW]
+
+		Crs (course) = q scores
+		Prev = avg. of previous yrs
+		ptp_prev = manual ptp system from yrs. before
+
+
+	predictions/
+
+		weatherman_2014_1.csv
+
+			A CSV file with the following header: [ccn, number, year, term, enrollment, prev_enrollment, ptp, new_course, gened, instructor]
+
+	data/
+
+		Raw data used to make predictions.
+
+		2014-10-03 Data for PTP Project_Jim Waldo.csv
+
+			A CSV file with the following header: [CCN, COURSE, TERM, PTP COUNT]
+
+			TERM seems to be a concatenation of the year (e.g. 2013) and the semester (either 1 or 2)
+
+		2014-10-09 Course Enrollment Data for PTP Project_Jim Waldo.csv
+
+			A CSV file with the following header: [" ", TERM, CCN, STUDENT ID, INSTRUCTOR ID, GEN_ED, CORE]
+
+			GEN_ED and CORE are Y if true, else blank
+
+		2015-02-09CourseEnrollmentSpringAY2014.csv
+
+			Header: [TERM, CCN, STUDENT ID, INSTRUCTOR ID]
+
+		2015-03-06 PTP Counts for Spring AY2014-15_Jim Waldo.csv
+
+			Header: [CCN, COURSE, TERM, PTP COUNT]
+
+		CourseCatalog_REAL.csv
+
+			Header: [AY, CCN, COURSE, COURSE TITLE, DEPARTMENT, DEPT 1, DEPT 2, INSTRUCTOR ID (TERM 1), INSTRUCTOR NAME (TERM 1), INSTRUCTOR ID (TERM 2), INSTRUCTOR NAME (TERM 2), TERM PATTERN, GEN_ED, CORE]
+
+			GEN_ED and CORE are Y if true, else blank
+
+			TERM PATTERN can be "fall term" or "spring term"
+
+		course_catalog_rosin.csv
+
+			Header: [AY, CCN, COURSE, COURSE TITLE, DEPARTMENT, DEPT 1, DEPT 2, INSTRUCTOR ID (TERM 1), INSTRUCTOR NAME (TERM 1), INSTRUCTOR ID (TERM 2), INSTRUCTOR NAME (TERM 2), TERM PATTERN, GEN_ED, CORE]
+
+			GEN_ED and CORE are Y if true, else blank
+
+			TERM PATTERN can be "fall term" or "spring term"
+
+		gened_list.csv
+
+			Header: [CCN, Year, Term, Course, Req 1, Req 2, Req 3]
+
+		Q_Data_for_PTP_F2014.csv
+
+			Header: [ACADEMIC YEAR, COURSE_ID, COURSE_NUMBER, TERM_NUM, CATALOG_NUMBER, DEPARTMENT, COURSE_GROUP, UGRADS, GRADS, X-REG, EMP, OTHERS, VUS, TOTAL_ENROLLMENT, Number_of_Responses, Crs_Overall, Crs_Workload_Hours, Crs_Difficulty, Instructors_Overall, Multiple_Instr, Instr 1, Instr 2, Instr 3, Instr 4, Instr 5, Instr 6, Instr 7, Instr 8, Instr 9, Instr 10, Instr 11]
+
+		full/
+
+			course_catalog_OLD.csv
+
+				Header: Header: [AY, CCN, COURSE, COURSE TITLE, DEPARTMENT, DEPT 1, DEPT 2, INSTRUCTOR ID (TERM 1), INSTRUCTOR NAME (TERM 1), INSTRUCTOR ID (TERM 2), INSTRUCTOR NAME (TERM 2), TERM PATTERN, GEN_ED, CORE]
+
+			CourseCatalog_REAL.csv
+
+				Header: Header: [AY, CCN, COURSE, COURSE TITLE, DEPARTMENT, DEPT 1, DEPT 2, INSTRUCTOR ID (TERM 1), INSTRUCTOR NAME (TERM 1), INSTRUCTOR ID (TERM 2), INSTRUCTOR NAME (TERM 2), TERM PATTERN, GEN_ED, CORE]
+
+				(Same as above)
+
+			course_enrollments.csv
+
+				Header: [" ", TERM, CNN, STUDENT ID, INSTRUCTOR ID, GEN_ED, CORE]
+
+			course_enrollments_OLD.csv
+
+				Header: [" ", TERM, CNN, STUDENT ID, INSTRUCTOR ID, GEN_ED, CORE]
+
+				Why is this different than the above? Diff. 
+
+			course_times_offered.csv
+
+				Header: [AY, TERM, CCN INSTRUCTOR ID, MTG TYPE, DAY- TIME]
+
+				Time: Of the form Tu 1:00PM - 3:00 PM or M,W,F 11:00AM - 12:00pm
+
+			ptp_counts.csv
+
+				Header: [CCN, COURSE, TERM, PTP COUNT]
+
+				Real PTP predictions. Maybe agg. accross all years.
+
+			q_data.csv
+
+				Header: [ACADEMIC YEAR, COURSE_ID, COURSE_NUMBER, TERM_NUM, CATALOG_NUMBER, DEPARTMENT, COURSE_GROUP, UGRADS, GRADS, X-REG, EMP, OTHERS, VUS, TOTAL_ENROLLMENT, Number_of_Responses, Crs_Overall, Crs_Workload_Hours, Crs_Difficulty, Instructors_Overall, Multiple_Instr, Instr 1, Instr 2, Instr 3, Instr 4, Instr 5, Instr 6, Instr 7, Instr 8, Instr 9, Instr 10, Instr 11, ... Instr 37]
+
+			students.csv
+
+				Header: [STUDENT ID, TERM, PROGRAM, PRIMARY CONCENTRATION/SUBJECT, JOINT CONCENTRATION, SECONDARY FIELD, ADVANCED STANDING]
+
+			out/
+
+				Maybe used as input to the prediction algorithms.
+
+				Folders 2004, 2005, .. 2014/
+
+					0/ (fall)
+
+						CourseCatalog_REAL.csv
+
+							Header: [year, semester, ccn, number, title, department_Ids, instructor_id, full_year, core, gen_ed]
+
+							Semester is 0
+
+						course_enrollments.csv
+
+							Header: [year, semester, ccn, student_Id, instructor_id, gen_ed, core]
+
+						course_times_offered.csv
+
+							Header: [year, semester, ccn, instructor_id, mtg_type, time]
+
+							mtg_type: can be seminar, lecture, speaking section, workshop, discussion section
+
+							time: array of tuples of the form: [(day, start, end)] (e.g. [('Tu', '19:00', '21:00')])
+
+						ptp_counts.csv
+
+							Header: [ccn, course, year, ptp_count, semester]
+
+						students.csv
+
+							Header: [student_id, year, program, primary_concentration, joint_concentration, secondary_field, advanced_standing, semester]		
+							Not entirely sure what's in the advanced standing column.
+
+					1/ (spring)
+
+						Same as 0/
+
+				departments.csv
+
+					Header: [id, name]
+
+				instructors.csv
+
+					Header: [id, first, last]
+
