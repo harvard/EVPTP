@@ -41,7 +41,13 @@ def parse_date(dateToParse):
 	returns: a separated year and term (e.g., 2004 and 0) as strings
 	'''
 	year = dateToParse[:-1]
-	term = dateToParse[-1:]
+	
+	# use human-readable strings instead of "0" and "1" for term
+	if dateToParse[-1:] is "0":
+		term = "FALL"
+	else:
+		term = "SPRING"
+
 	return year, term
 
 def pickle_and_save():
