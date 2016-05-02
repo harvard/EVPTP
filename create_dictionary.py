@@ -37,13 +37,13 @@ def parse_date(dateToParse):
 	This function parses these concatenated dates into two pieces 
 	(e.g., "20040" into 2004 and 0) and returns both pieces of data.
 
-	dataToParse: a string concatenation of a year (e.g., 2004) and a term (0, 1) 
-	returns: a separated year and term (e.g., 2004 and 0) as strings
+	dataToParse: a string concatenation of a year (e.g., 2004) and a term (1, 2) 
+	returns: a separated year and term (e.g., 2004 and FALL) as strings
 	'''
 	year = dateToParse[:-1]
 	
-	# use human-readable strings instead of "0" and "1" for term
-	if dateToParse[-1:] is "0":
+	# use human-readable strings instead of "1" and "2" for term
+	if dateToParse[-1:] is "1":
 		term = "FALL"
 	else:
 		term = "SPRING"
