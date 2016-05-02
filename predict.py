@@ -1,6 +1,8 @@
 '''
 This file predicts course enrollments using a linear regression
 and writes these predictions to a file.
+
+To predict course enrollments for 2015, simply run `python predict.py`
 '''
 
 import csv
