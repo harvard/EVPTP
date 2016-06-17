@@ -1,0 +1,38 @@
+6/16
+Wrote create_dictionary_new.py, which will convert the new form of .csv received from the SIS group to a dictionary that
+is in the same form as that produced by create_dictionary.py. If I wanted to be clever, I could merge the code into
+create dictionary (and add a flag or a configuration to determine which of the formats the original csv is in), but
+since the format of the dumps are likely to change, I dicided just to write a new program. It does, however, re-use
+much of the original program.
+
+In doing this, I found a somewhat simpler way of determining if the dictionary entries have been created, and so went
+back and changed create_dictionary.py to use the simpler algorithm.
+
+6/15
+
+Added code to make create_dictionary.py idempotent if run on the same csv file with a dictionary that has already added
+the contents of that csv. When an existing dictionary is read, a set is created that will keep track of the course-id,
+years, and term for the courses in the dictionary. If this combination is found in the csv being read in, it will be
+skipped.
+
+6/14
+
+Re-factored create_dictionary.py to allow passing in the csv file from which to read the course data, and to append to a
+dictionary if one has already been created (by reading in the created file, and then adding the contents of the csv file
+to the dictionary). Note that if you append a file that has already been read, it will add the enrollment again; this
+should be fixed but right now we should make sure never to run the same file through twice.
+
+6/9/16
+
+Thinking about changing the data for the historical course enrollments so that the course numbers don't vary between
+the old, pre-SIS numbers and the new course numbers.
+
+Created a set of files from the mapping from new course numbers to old course numbers (where there is a lot of other
+information, as well). This is a csv file in which the first entry is the new course number, and the last entry is
+the old course number (so, if l is a line, l[0] = new course number, l[10] = old). From this, I created pickles of
+the set of old courses (saved in old_course_set), a set of new course numbers (new_course_set), a dictionary indexed
+by old course number with value new course number (old_to_new_dict) and a dictionary indexed by new course number with
+value old course number (new_to_old_dict).
+
+
+
