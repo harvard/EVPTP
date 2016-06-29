@@ -1,2 +1,4 @@
 # no need to keep the predictions in the repo
 course_predictions.csv
+
+/NewData/*
