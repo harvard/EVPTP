@@ -1,6 +1,5 @@
 '''
-This program consumes the data files used in PTP prediction attempts to build a multi-level dictionary that has the
-following form:
+This program consumes the data files used in PTP prediction attempts to build a multi-level dictionary that has the following form:
 
 {
 	course_id: {

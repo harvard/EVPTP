@@ -1,1 +1,12 @@
-1. Change old course_ids to new course_id's
+* Change dictionary in create_dictionary to a Collection to clean up code
+
+* Change old course_ids to new course_id's. How? Use CourseCatalog_REAl.csv. Create a lookup from 
+old course_ids to new course_ids by first creating a temporary lookup from old course_ids to course title, and then from course title to new course_ids, and then zip up the two lookups.
+
+Once this lookup is built, change create_dictionary so that, instead of adding the old course_id, it does a lookup in the mapping from old course_id's to new course_id's instead.
+
+Only do this if the SIS doesn't have a translation table for ids themselves
+
+* Test predictions for 2015 based on some enrollment data from SIS
+
+* Then add in 2015 to the historical data, and try predicting 2016
