@@ -69,6 +69,8 @@ def main(reader, course_data_dict, course_set, out_file):
 
 if __name__ == '__main__':
     in_data = sys.argv[1]
+    out_file = sys.argv[2]
+
     if not os.path.exists(in_data):
         print 'Specified input file does not exist'
         print 'Usage: python create_dictionary.py class_file.csv output_dictionary'
@@ -76,7 +78,6 @@ if __name__ == '__main__':
 
     csv_in = create_dictionary.get_csv(in_data)
 
-    out_file = sys.argv[2]
     if os.path.exists(out_file):
         course_data_dict, course_set = create_dictionary.unpickle_and_build_set(out_file)
     else:
