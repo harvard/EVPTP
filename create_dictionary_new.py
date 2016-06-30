@@ -35,7 +35,11 @@ def parse_new_date(dateToParse):
     :return: A four-character year, and the term as either 'FALL' or 'SPRING'
 
     '''
-    year = ''.join((dateToParse[0], '0', dateToParse[1:3]))
+    if dateToParse[0] == '2':
+        ins_char = '0'
+    else:
+        ins_char = '9'
+    year = ''.join((dateToParse[0], ins_char, dateToParse[1:3]))
     if dateToParse[:1] == '2':
         term = "SPRING"
     else:
@@ -56,6 +60,9 @@ def main(reader, course_data_dict, course_set, out_file):
 
     reader.next()
     for row in reader:
+        if row[9] == '0':
+            continue
+
         year, term = parse_new_date(row[2])
         course_id = row[0]
         if ''.join((course_id, year, term)) not in course_set:
@@ -63,7 +70,10 @@ def main(reader, course_data_dict, course_set, out_file):
                 course_data_dict[course_id] = {}
             if year not in course_data_dict[course_id]:
                 course_data_dict[course_id][year] = {}
-            course_data_dict[course_id][year][term] = row[9]
+            if term not in course_data_dict[course_id][year]:
+                course_data_dict[course_id][year][term] = row[9]
+            else:
+                course_data_dict[course_id][year][term] += row[9]
 
     create_dictionary.pickle_and_save(course_data_dict, out_file)
 
